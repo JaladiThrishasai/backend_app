@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
-const productSchema = mongoose.Schema({
-  name:{type:String, requried:true},
-  desc: {type:String, requried:true},
-  price:{type:Number, requried:true},
-  imageUrl: {type:String},
-});
-const productModel = mongoose.model("products",productSchema)
-
-export default productModel;
+const dbConnect = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+  } catch (err) {
+    console.log(err);
+  }
+};
+export default dbConnect;
